@@ -9,6 +9,13 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    avatar:{
+        type:String
+      
+    },
+    cloudinary_id:{
+        type:String
+    },
     fName:{
         type:String,
         required: true,

@@ -30,4 +30,4 @@ let upload = multer({
     fileSize: 12048576
 });
 
-module.exports = upload.array("incomingimages", 3);
+module.exports = upload.array("images", 3);

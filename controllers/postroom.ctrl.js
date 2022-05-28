@@ -4,30 +4,30 @@ const path             = require('path');
 const mongoose         = require('mongoose');
 const roomieServices   = require("../services/findRoomie.services");
 const upload           = require("../middlewares/👩🏾‍🎓");
+const cloudinary = require("../utils/cloudinary");
 
 
-exports.create = (req,res, next) =>{
-    upload(req, res, function(err){
-        if(err){
-            next(err);
-        }else{
-            const incomingimages = req.files;
-            const images =[];
-            incomingimages.forEach(incomingimage =>{
-       const url = req.protocol + "://" + req.get("host");
-            const path = incomingimage != undefined ? incomingimage.path.replace(/\\/g, "/"): "";
-           if (path != ""){
-            images.push(url+"/"+path);
-           }
-            
-            })
-         
-           
-          
+
+exports.create = async (req,res, next) =>{
+   
+            const urls = [];
+            const idz = [];
+      const files = req.files;
+      for (const file of files) {
+        const { path } = file;
+     const newPath = await cloudinary.cloudinaryImageUploadMethod(path);
+        urls.push(newPath);
+      
+        idz.push(newPath);
+      }
+
             var model = {
                 userID: req.body.userID,
-                images: images,
+               
+                images: urls.map( url => url.res ),
+                cloudinary_id: idz.map( id => id.rid ),
                  title: req.body.title,
+                 avie: req.body.avie,
                   address: req.body.address,
                   type: req.body.type,
                   totalRoomie: req.body.totalRoomie,
@@ -47,8 +47,8 @@ exports.create = (req,res, next) =>{
                     })
                 }
             })
-        }
-    })
+        
+    
 }
 
 
@@ -142,7 +142,7 @@ exports.updatePost = (req,res, next) =>{
 exports.deletePost = (req,res, next) =>{
    
     var model = {
-         postID: req.params.id
+         postID: req.body.postID
    };
 
         roomieServices.deleteByID(model, (error, results)=>{

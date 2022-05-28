@@ -1,6 +1,7 @@
 const Post  = require('../models/roomiePosts.model');
 const Request  = require('../models/request.model');
 const User = require("../models/user.model");
+const cloudinary = require("../utils/cloudinary");
 
 async function findRoomie(params, callback){
     const userid = params.userID;
@@ -85,11 +86,20 @@ async function updateByID(params, callback){
 
 async function deleteByID(params, callback){
     const post = await params.postID;
+
+  
    
         Post.findByIdAndRemove(post).then((response) =>{
             if(!response){return callback("Product not found")}
-            else
-            return callback(null, response);
+            else{
+            const cl_id = response.cloudinary_id;
+            for (let m = 0; m < cl_id.length; m++) {
+                // const element = rent.cloudinary_id[index];
+                cloudinary.cloudinaryImageDeleteMethod(cl_id[m]);
+                
+              }
+
+            return callback(null, response);}
         }).catch((error) =>{
             return callback(error);
         });

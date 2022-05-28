@@ -6,7 +6,24 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+const cloudinaryImageUploadMethod = async file => {
+  return new Promise(resolve => {
+      cloudinary.uploader.upload( file , (err, res,) => {
+        if (err) return console.log(err)
+          resolve({
+             res: res.secure_url,
+            rid: res.public_id
+          }) 
+        }
+      ) 
+  })
+}
 
+const cloudinaryImageDeleteMethod = async idz => {
+  return new Promise(resolve => {
+      cloudinary.uploader.destroy( idz ) 
+  })
+}
 
-module.exports = cloudinary;
+module.exports = {cloudinary, cloudinaryImageUploadMethod, cloudinaryImageDeleteMethod};
 

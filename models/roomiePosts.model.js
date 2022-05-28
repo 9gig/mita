@@ -4,8 +4,25 @@ const {Schema}      = mongoose;
 const uniqueValidator       = require('mongoose-unique-validator');
 
 const postSchema = new Schema({
-    images:[],
+    images:[
+        {
+            type:String,
+            required: true,
+          
+        }
+
+    ],
+    cloudinary_id:[
+        {
+            type:String,
+            required: true,
+          
+        }
+    ],
     title:{
+        type:String,
+    },
+    avie:{
         type:String,
     },
     address:{

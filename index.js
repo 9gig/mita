@@ -45,13 +45,13 @@ mongoose.connect(dbconfig.db, {
  
   
 
-app.get("/", function (req, res) {
+// app.get("/", function (req, res) {
  
-client.verify.services(config.service_id)
-.verifications
-.create({to: '+2348087656557', channel: 'sms'})
-.then(verification => console.log(verification));
-});
+// client.verify.services(config.service_id)
+// .verifications
+// .create({to: '+2348087656557', channel: 'sms'})
+// .then(verification => console.log(verification));
+// });
 // METHOD TO USE REQUEST AS AN OBJECT
 
 

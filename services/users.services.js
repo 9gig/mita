@@ -26,11 +26,26 @@ async function login({userID, password}, callback){
 }
 
 async function register(params, callback){
-    if(params.userID === undefined){
-        return callback({message:"userID required"});
-    }
+    // if(params.userID === undefined){
+    //     return callback({message:"userID required"});
+    // }
     const user = new User(params);
     user.save().then((response) =>{
+        return callback(null, response);
+    }).catch((error)=>{
+        return callback(error);
+    });
+}
+
+async function updateAvatar({userID, avatar, cloudinary_id}, callback){
+    if(userID === undefined){
+        return callback({message:"userID required"});
+    }
+    var model ={
+        avatar:avatar,
+        cloudinary_id:cloudinary_id
+    }
+    const user = await User.findOneAndUpdate(userID,model, { useFindAndModify: false } ).then(()=>{
         return callback(null, response);
     }).catch((error)=>{
         return callback(error);
@@ -79,5 +94,6 @@ module.exports ={
     login,
     register,
     rentRequest,
-    findRoomie
+    findRoomie,
+    updateAvatar
 };

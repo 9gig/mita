@@ -16,18 +16,18 @@ router.get("/",(req, res) => {
 })
 
 // router.get("/requests", adminController.getAll)
-const cloudinaryImageUploadMethod = async file => {
-    return new Promise(resolve => {
-        cloudinary.uploader.upload( file , (err, res,) => {
-          if (err) return res.status(500).send("upload image error")
-            resolve({
-               res: res.secure_url,
-              rid: res.public_id
-            }) 
-          }
-        ) 
-    })
-  }
+// const cloudinaryImageUploadMethod = async file => {
+//     return new Promise(resolve => {
+//         cloudinary.uploader.upload( file , (err, res,) => {
+//           if (err) return res.status(500).send("upload image error")
+//             resolve({
+//                res: res.secure_url,
+//               rid: res.public_id
+//             }) 
+//           }
+//         ) 
+//     })
+//   }
 const cloudinaryImageDeleteMethod = async idz => {
     return new Promise(resolve => {
         cloudinary.uploader.destroy( idz ) 
@@ -42,7 +42,7 @@ router.post("/addHouse", upload.array("image",3), async (req, res) => {
 const files = req.files;
 for (const file of files) {
   const { path } = file;
-  const newPath = await cloudinaryImageUploadMethod(path);
+  const newPath = await cloudinary.cloudinaryImageUploadMethod(path);
   urls.push(newPath);
 
   idz.push(newPath);
@@ -95,7 +95,7 @@ router.delete("/rentdel/:id", async (req, res) => {
   const img = rent.cloudinary_id;
   for (let m = 0; m < img.length; m++) {
     // const element = rent.cloudinary_id[index];
-    cloudinaryImageDeleteMethod(img[m]);
+    cloudinary.cloudinaryImageDeleteMethod(img[m]);
     
   }
     //  await cloudinary.uploader.destroy(rent.cloudinary_id[1]);
