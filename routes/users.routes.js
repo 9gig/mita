@@ -7,6 +7,8 @@ const cloudinary = require("../utils/cloudinary");
 const roomieServices   = require("../services/findRoomie.services");
 const upload = require("../utils/multer");
 const User = require("../models/user.model");
+const Rent = require("../models/rentPost");
+const Renting = require("../models/rentReq.model");
 
 
 
