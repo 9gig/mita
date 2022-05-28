@@ -57,5 +57,19 @@ router.put("/updateAvatar",upload.single("image"),async(req, res)=>{
         console.log(error);
     }
 });
+router.get("/getHouses",async (req, res) => {
+    try {
+      let rent = await Rent.find().then((response)=>{
+        if(!response){
+          var msg = res.json({message: "No Product yet"});
+          return msg
+        }
+        res.json(response);
+      });
+     
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
 module.exports = router;
