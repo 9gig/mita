@@ -44,9 +44,9 @@ router.put("/updateAvatar",upload.single("image"),async(req, res)=>{
                 avatar: result.res,
                 cloudinary_id: result.rid,
             }
-            User.findOneAndUpdate({userID: userid}, mod,{ useFindAndModify: true }).then(response =>{
+            User.findOneAndUpdate({userID: userid}, mod,{ useFindAndModify: false }).then(response =>{
                 if(!response) res.send({message:"An error occured"})
-                else return res.json(response);
+                else return res.json(user);
             })
 
            }else{
