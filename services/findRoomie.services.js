@@ -10,7 +10,7 @@ async function findRoomie(params, callback){
     if(user != null){
         const post = new Post(params);
         post.save().then((response) =>{
-            return callback(null, response);
+            return callback(response);
         }).catch((error) =>{
             return callback(error);
         });
