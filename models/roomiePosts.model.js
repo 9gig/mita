@@ -25,6 +25,21 @@ const postSchema = new Schema({
     avie:{
         type:String,
     },
+    fullName:{
+        type:String,
+    },
+    phone:{
+        type:String,
+    },
+    school:{
+        type:String,
+    },
+    level:{
+        type:String,
+    },
+    dept:{
+        type:String,
+    },
     address:{
         type:String,
         required: true,
