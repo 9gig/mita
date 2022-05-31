@@ -41,8 +41,7 @@ exports.create = async (req,res, next) =>{
                 if(error){
                     return next(error);
                 }else{
-                    return res.status(200).json(
-                       
+                    return res.json(
                        results
                     )
                 }
