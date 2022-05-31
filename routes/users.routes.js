@@ -46,6 +46,7 @@ router.put("/updateAvatar",upload.single("image"),async(req, res)=>{
             }
             User.findOneAndUpdate({userID: userid}, mod,{ useFindAndModify: false }).then(response =>{
                 if(!response) res.send({message:"An error occured"})
+                
                 else return res.json(user);
             })
 
