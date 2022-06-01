@@ -79,7 +79,7 @@ router.get("/getHouses",async (req, res) => {
      const id = req.body.id;
       let post = await Post.findById(id).then((response)=>{
         if(!response){
-          var msg = res.json({message: "Post not found"});
+          var msg = res.status(500).json({message: "Post not found"});
           return msg;
         }else{
           return response;
