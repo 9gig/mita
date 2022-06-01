@@ -9,6 +9,7 @@ const upload = require("../utils/multer");
 const User = require("../models/user.model");
 const Rent = require("../models/rentPost");
 const Renting = require("../models/rentReq.model");
+const Post  = require('../models/roomiePosts.model');
 
 
 
@@ -73,5 +74,25 @@ router.get("/getHouses",async (req, res) => {
       console.log(err);
     }
   });
+  router.get("/postByID", async(req, res)=>{
+    try {
+      const id = req.body.id;
+      let post = await Post.findById(id).then((response)=>{
+        if(!response){
+          var msg = res.json({message: "Post not found"});
+          return msg;
+        }else{
+          return response;
+
+        }
+        
+      });
+      res.json(post);
+
+      
+    } catch (error) {
+      console.log(error);
+    }
+  })
 
 module.exports = router;
