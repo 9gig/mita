@@ -22,6 +22,7 @@ const userRequestSchema = new Schema({
     reqsterContact:{
         type:String,
         required: true,
+        unique: true
       
     },
    posterImg:{
@@ -64,6 +65,6 @@ transform:(document, returnedObject) =>{
    
 },
 });
-
+userRequestSchema.plugin(uniqueValidator,{message:"You've made a request to this user already"});
 const Request= mongoose.model("request", userRequestSchema);
 module.exports = Request;
