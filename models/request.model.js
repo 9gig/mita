@@ -22,7 +22,7 @@ const userRequestSchema = new Schema({
     reqsterContact:{
         type:String,
         required: true,
-        unique: true
+      
       
     },
    posterImg:{
