@@ -52,7 +52,7 @@ async function updateAvatar({userID, avatar, cloudinary_id}, callback){
     });
 }
 
-async function rentRequest({postID,fullName,userID,phone}, callback){
+async function rentRequest({postID,fullName,userID,phone,avatar}, callback){
     if(postID === undefined){
         return callback({message:"Property not found"});
     }
@@ -65,6 +65,7 @@ async function rentRequest({postID,fullName,userID,phone}, callback){
     userID:userID,
      address: rent.address,
      price: rent.price,
+     avatar: avatar,
      landlord: rent.landlord,
      image:rent.images[0]
       });
