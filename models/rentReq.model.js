@@ -16,6 +16,9 @@ const rentReqSchema = new mongoose.Schema({
   userID: {
     type: String,
   },
+  avatar: {
+    type: String,
+  },
   phone: {
     type: String,
   },

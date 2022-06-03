@@ -177,6 +177,7 @@ exports.rentHouse = (req, res, next)=>{
  const  fullName = req.body. fullName;
  const userID = req.body.userID;
  const  phone= req.body.phone;
+ const  avatar= req.body.avatar;
 
  userService.rentRequest({postID,fullName,userID,phone},(error,result) =>{
   if(error){
