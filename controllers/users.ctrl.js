@@ -179,7 +179,7 @@ exports.rentHouse = (req, res, next)=>{
  const  phone= req.body.phone;
  const  avatar= req.body.avatar;
 
- userService.rentRequest({postID,fullName,userID,phone},(error,result) =>{
+ userService.rentRequest({postID,fullName,userID,phone,avatar},(error,result) =>{
   if(error){
       return next(error);
   }
