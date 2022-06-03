@@ -65,6 +65,6 @@ transform:(document, returnedObject) =>{
    
 },
 });
-userRequestSchema.plugin(uniqueValidator,{message:"You've made a request to this user already"});
+// userRequestSchema.plugin(uniqueValidator,{message:"You've made a request to this user already"});
 const Request= mongoose.model("request", userRequestSchema);
 module.exports = Request;
