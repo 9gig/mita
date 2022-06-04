@@ -42,13 +42,13 @@ exports.create = async (req,res, next) =>{
                    description: req.body.description 
             };
 
-            roomieServices.findRoomie(model, (error, results)=>{
+            roomieServices.findRoomie(model, (error, result)=>{
                 if(error){
                     return next(error);
                 }else{
                     return res.status(200).send({
                         message: "success",
-                        data: results,
+                        data: result,
                     });
                 }
             })
