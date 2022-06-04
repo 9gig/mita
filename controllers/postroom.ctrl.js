@@ -48,7 +48,7 @@ exports.create = async (req,res, next) =>{
                 }else{
                     return res.status(200).send({
                         message: "success",
-                        data: result,
+                        data: results,
                     });
                 }
             })
