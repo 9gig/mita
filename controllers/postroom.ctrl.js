@@ -46,9 +46,10 @@ exports.create = async (req,res, next) =>{
                 if(error){
                     return next(error);
                 }else{
-                    return res.json(
-                       results
-                    )
+                    return res.status(200).send({
+                        message: "success",
+                        data: result,
+                    });
                 }
             })
         
