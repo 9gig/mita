@@ -96,11 +96,11 @@ router.get("/getHouses",async (req, res) => {
     }
   })
 
-  router.get("/getRequests", async (req, res)=>{
-   
-    const postReqs = await Request.find();
-
-    console.log({postReqs});
+  router.post("/getPostByContact", async (req, res)=>{
+    const contact = req.body.phone;
+    const postReqs = await Request.find({"posterContact":contact});
+    
+    res.json({postReqs});
   })
 
 module.exports = router;
