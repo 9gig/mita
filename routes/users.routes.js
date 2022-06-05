@@ -96,7 +96,7 @@ router.get("/getHouses",async (req, res) => {
   })
 
   router.get("/getPostByContact/:id", async (req, res)=>{
-    const contact = req.params;
+    const contact = req.params.id;
     console.log(contact);
   })
 
