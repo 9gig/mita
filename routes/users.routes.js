@@ -10,6 +10,7 @@ const User = require("../models/user.model");
 const Rent = require("../models/rentPost");
 const Renting = require("../models/rentReq.model");
 const Post  = require('../models/roomiePosts.model');
+const Request = require('../models/request.model');
 
 
 
@@ -95,9 +96,11 @@ router.get("/getHouses",async (req, res) => {
     }
   })
 
-  router.get("/getPostByContact/:id", async (req, res)=>{
-    const contact = req.params.id;
-    console.log(contact);
+  router.post("/getPostByContact", async (req, res)=>{
+    const contact = req.body.phone;
+    const postReqs = await Request.find({contact});
+
+    console.log(postReqs);
   })
 
 module.exports = router;
