@@ -95,4 +95,9 @@ router.get("/getHouses",async (req, res) => {
     }
   })
 
+  router.get("/getPostByContact/:id", async (req, res)=>{
+    const contact = req.params;
+    console.log(contact);
+  })
+
 module.exports = router;
