@@ -98,9 +98,17 @@ router.get("/getHouses",async (req, res) => {
 
   router.post("/getPostByContact", async (req, res)=>{
     const contact = req.body.phone;
-    const postReqs = await Request.find(({"reqsterContact":contact}||{"posterContact":contact}) );
+    const postReqs = await Request.find({"reqsterContact":contact} );
+    const reqster  = await Request.find({"posterContact":contact});
+    if(postReqs){
+      res.json({postReqs});
+    }else if(reqster){
+      res.json({reqster});
+    }else{
+     return res.status(500).send({message: "No request has been made to or from you."})
+    }
     
-    res.json({postReqs});
+   
   })
 
 module.exports = router;
