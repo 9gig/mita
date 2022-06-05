@@ -99,7 +99,8 @@ router.get("/getHouses",async (req, res) => {
   router.post("/getPostByContact", async (req, res)=>{
     const phone = req.body.phone;
 
-    const reqs = await Request.find({phone});
+    const reqs = await Request.find({"posterContact": phone});
+    
     res.json(reqs);
   
   })
