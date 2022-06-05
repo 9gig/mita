@@ -102,11 +102,12 @@ router.get("/getHouses",async (req, res) => {
     const reqster  = await Request.find({"reqsterContact":contact});
     if(postReqs != null){
      return res.json({postReqs});
-    }else if(reqster != null){
-     return res.json({reqster});
-    }else{
-     return res.status(500).send({message: "No request has been made to or from you."})
     }
+    if(reqster != null){
+     return res.json({reqster});
+    }
+     return res.status(500).send({message: "No request has been made to or from you."})
+    
     
    
   })
