@@ -120,6 +120,7 @@ router.post("/makePayment", async(req, res)=>{
     amount:req.body.amt,
     paidBy:req.body.name,
     userID: req.body.userID,
+    
     productID: req.body.productID
   }
 
