@@ -96,13 +96,18 @@ router.get("/getHouses",async (req, res) => {
     }
   })
 
-  router.post("/getPostByContact", async (req, res)=>{
-    const phone = req.body.phone;
+  router.get("/getPostByContact/:phone", async (req, res)=>{
+    const phone = req.params.phone;
 
-    const reqsPoster = await Request.find({"posterContact": phone});
+    const reqs = await Request.find({$or:[{"posterContact": phone},{"reqsterContact":phone}]});
     
-    res.json(reqsPoster);
+    res.json(reqs);
   
-  })
-
+  });
+//get user rent reqs
+router.get("/getRentReqsbyUser/:userID", async(req, res)=>{
+  const userID = req.params.userID;
+  const reqs = await Renting.find({userID:userID});
+  res.json(reqs);
+})
 module.exports = router;
