@@ -11,6 +11,7 @@ const Rent = require("../models/rentPost");
 const Renting = require("../models/rentReq.model");
 const Post  = require('../models/roomiePosts.model');
 const Request = require('../models/request.model');
+const Payman  = require("../models/payment.model");
 
 
 
@@ -109,5 +110,22 @@ router.get("/getRentReqsbyUser/:userID", async(req, res)=>{
   const userID = req.params.userID;
   const reqs = await Renting.find({userID:userID});
   res.json(reqs);
+});
+
+router.post("/makePayment", async(req, res)=>{
+  const paymodel = {
+    ref:req.body.ref,
+    paymentStatus:req.body.stats,
+    paidFor:req.body.type,
+    amount:req.body.amt,
+    paidBy:req.body.name,
+    userID: req.body.userID,
+    productID: req.body.productID
+  }
+
+  var payment = new Payman(paymodel);
+  payment.save().then((payee)=> {
+    res.json(payee);
+  });
 })
 module.exports = router;
